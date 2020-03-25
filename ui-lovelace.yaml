@@ -1,0 +1,33 @@
+title: Maison
+resources:
+  - url: /local/simple-thermostat.js?v=1
+    type: module
+views:
+  - badges: []
+    cards:
+      - entities:
+          - entity: sensor.0x00158d000411b5e5_temperature
+          - entity: sensor.0x00158d000411b5e5_humidity
+          - entity: sensor.0x00158d000411b5e5_pressure
+          - entity: sensor.0x00158d000411b5e5_linkquality
+          - entity: sensor.0x00158d000411b5e5_battery
+        show_icon: true
+        show_name: true
+        show_state: true
+        theme: default
+        title: Chambre Diane
+        type: glance
+      - entity: climate.generic_thermostat
+        name: Chauffage Diane
+        theme: default
+        type: thermostat
+    path: interior
+    title: Intérieur
+  - badges: []
+    cards:
+      - entity: weather.maison
+        name: Météo
+        theme: default
+        type: weather-forecast
+    path: default_view
+    title: Extérieur
