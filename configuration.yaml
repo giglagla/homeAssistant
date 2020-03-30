@@ -24,7 +24,7 @@ climate:
     ac_mode: false
     target_temp: 19
     cold_tolerance: 0.2
-    hot_tolerance: 0
+    hot_tolerance: 0.2
     min_cycle_duration:
       seconds: 5
     keep_alive:
