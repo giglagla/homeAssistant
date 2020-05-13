@@ -17,7 +17,7 @@ tts:
 #  mode: yaml
 
 webhook:
- 
+
 zigbee2mqtt_networkmap:
   #topic: your topic (optional, default zigbee2mqtt)
 panel_iframe:
@@ -27,6 +27,7 @@ panel_iframe:
     icon: 'mdi:graphql'
 
 climate:
+  #Chambre Diane
   - platform: generic_thermostat
     name: climateDiane
     heater: switch.switch_state_revert1
@@ -44,10 +45,65 @@ climate:
     initial_hvac_mode: "heat"
     away_temp: 14
     precision: 0.1
+  #Chambre parentale
+  - platform: generic_thermostat
+    name: climateParents
+    heater: switch.switch_state_revert2
+    target_sensor: sensor.0x00158d00045abd39_temperature
+    min_temp: 10
+    max_temp: 25
+    ac_mode: false
+    target_temp: 19
+    cold_tolerance: 0.2
+    hot_tolerance: 0.2
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 14
+    precision: 0.1
+  #Chambre amis
+  - platform: generic_thermostat
+    name: climateAmis
+    heater: switch.switch_state_revert3
+    target_sensor: sensor.0x00158d0004210843_temperature
+    min_temp: 10
+    max_temp: 25
+    ac_mode: false
+    target_temp: 19
+    cold_tolerance: 0.2
+    hot_tolerance: 0.2
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 14
+    precision: 0.1
+  #Salon
+  - platform: generic_thermostat
+    name: climateSalon
+    heater: switch.switch_state_revert4
+    target_sensor: sensor.0x00158d000465c103_temperature
+    min_temp: 10
+    max_temp: 25
+    ac_mode: false
+    target_temp: 19
+    cold_tolerance: 0.2
+    hot_tolerance: 0.2
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 14
+    precision: 0.1
 
 switch:
   - platform: template
     switches:
+      #Aqara_Relay1
       switch_state_revert1:
         value_template: "{{ is_state('switch.0x00158d000444ed09_switch_l2', 'off')}}"
         turn_on:
@@ -58,6 +114,37 @@ switch:
           service: switch.turn_on
           data:
             entity_id: switch.0x00158d000444ed09_switch_l2
+      switch_state_revert2:
+        value_template: "{{ is_state('switch.0x00158d000444ed09_switch_l1', 'off')}}"
+        turn_on:
+          service: switch.turn_off
+          data:
+            entity_id: switch.0x00158d000444ed09_switch_l1
+        turn_off:
+          service: switch.turn_on
+          data:
+            entity_id: switch.0x00158d000444ed09_switch_l1
+      #Aqara_Relay2
+      switch_state_revert3:
+        value_template: "{{ is_state('switch.0x00158d00045c20e3_switch_l2', 'off')}}"
+        turn_on:
+          service: switch.turn_off
+          data:
+            entity_id: switch.0x00158d00045c20e3_switch_l2
+        turn_off:
+          service: switch.turn_on
+          data:
+            entity_id: switch.0x00158d00045c20e3_switch_l2
+      switch_state_revert4:
+        value_template: "{{ is_state('switch.0x00158d00045c20e3_switch_l1', 'off')}}"
+        turn_on:
+          service: switch.turn_off
+          data:
+            entity_id: switch.0x00158d00045c20e3_switch_l1
+        turn_off:
+          service: switch.turn_on
+          data:
+            entity_id: switch.0x00158d00045c20e3_switch_l1
 
 
 group: !include groups.yaml
