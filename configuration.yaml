@@ -147,6 +147,17 @@ switch:
             entity_id: switch.0x00158d00045c20e3_switch_l1
 
 
+sensor:
+  - platform: linky
+    username: !secret linky_username
+    password: !secret linky_password
+    peak_hours:
+     - ["07:00","14:00"]
+     - ["17:00","02:00"]
+    peak_hours_cost: 0.1761
+    offpeak_hours_cost: 0.1291
+
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
