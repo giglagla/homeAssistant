@@ -1,0 +1,2 @@
+var webhook_trigger_update_url = 'https://marionguillaume.fr/api/webhook/46e972d206fc2bf412ec34493469af39866192a92de4ae3eb06cf37b334c92b9';
+var webhook_check_update_url = 'https://marionguillaume.fr/api/webhook/6551713275efebb00d852767d0c5e0718972330467b245ce747dfe9942f7aaaf';
