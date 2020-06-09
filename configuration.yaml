@@ -42,7 +42,7 @@ climate:
       seconds: 5
     keep_alive:
       minutes: 3
-    initial_hvac_mode: "heat"
+    initial_hvac_mode: "off"
     away_temp: 14
     precision: 0.1
   #Chambre parentale
@@ -60,7 +60,7 @@ climate:
       seconds: 5
     keep_alive:
       minutes: 3
-    initial_hvac_mode: "heat"
+    initial_hvac_mode: "off"
     away_temp: 14
     precision: 0.1
   #Chambre amis
@@ -78,7 +78,7 @@ climate:
       seconds: 5
     keep_alive:
       minutes: 3
-    initial_hvac_mode: "heat"
+    initial_hvac_mode: "off"
     away_temp: 14
     precision: 0.1
   #Salon
@@ -96,7 +96,7 @@ climate:
       seconds: 5
     keep_alive:
       minutes: 3
-    initial_hvac_mode: "heat"
+    initial_hvac_mode: "off"
     away_temp: 14
     precision: 0.1
 
