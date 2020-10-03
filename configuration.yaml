@@ -35,14 +35,14 @@ climate:
     min_temp: 10
     max_temp: 25
     ac_mode: false
-    target_temp: 19
+    target_temp: 18
     cold_tolerance: 0.2
     hot_tolerance: 0.2
     min_cycle_duration:
       seconds: 5
     keep_alive:
       minutes: 3
-    initial_hvac_mode: "off"
+    initial_hvac_mode: "eat"
     away_temp: 14
     precision: 0.1
   #Chambre parentale
