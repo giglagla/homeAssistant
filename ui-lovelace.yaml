@@ -1,33 +1,138 @@
 title: Maison
-resources:
-  - url: /local/simple-thermostat.js?v=1
-    type: module
 views:
   - badges: []
     cards:
-      - entities:
+      - type: 'custom:simple-thermostat'
+        entity: climate.climatediane
+        step_size: 0.5
+        name: Chambre Diane
+        step_layout: row
+        control:
+          _headings: false
+          hvac: true
+        hide:
+          state: true
+          temperature: true
+        sensors:
           - entity: sensor.0x00158d000411b5e5_temperature
+            icon: 'mdi:home-thermometer-outline'
           - entity: sensor.0x00158d000411b5e5_humidity
-          - entity: sensor.0x00158d000411b5e5_pressure
-          - entity: sensor.0x00158d000411b5e5_linkquality
-          - entity: sensor.0x00158d000411b5e5_battery
-        show_icon: true
-        show_name: true
-        show_state: true
-        theme: default
-        title: Chambre Diane
-        type: glance
-      - entity: climate.generic_thermostat
-        name: Chauffage Diane
-        theme: default
-        type: thermostat
-    path: interior
-    title: Intérieur
+            icon: 'mdi:water-percent'
+      - control:
+          _headings: false
+          hvac: true
+        hide:
+          state: true
+          temperature: true
+        entity: climate.climatesalon
+        name: Salon
+        sensors:
+          - entity: sensor.0x00158d000465c103_temperature
+            icon: 'mdi:home-thermometer-outline'
+          - entity: sensor.0x00158d000465c103_humidity
+            icon: 'mdi:water-percent'
+        step_layout: row
+        step_size: 0.5
+        type: 'custom:simple-thermostat'
+      - control:
+          _headings: false
+          hvac: true
+        hide:
+          state: true
+          temperature: true
+        entity: climate.climateamis
+        name: Chambre Amis
+        sensors:
+          - entity: sensor.0x00158d0004210843_temperature
+            icon: 'mdi:home-thermometer-outline'
+          - entity: sensor.0x00158d0004210843_humidity
+            icon: 'mdi:water-percent'
+        step_layout: row
+        step_size: 0.5
+        type: 'custom:simple-thermostat'
+      - control:
+          _headings: false
+          hvac: true
+        hide:
+          state: true
+          temperature: true
+        entity: climate.climateparents
+        name: Chambre Parentale
+        sensors:
+          - entity: sensor.0x00158d00045abd39_temperature
+            icon: 'mdi:home-thermometer-outline'
+          - entity: sensor.0x00158d00045abd39_humidity
+            icon: 'mdi:water-percent'
+        step_layout: row
+        step_size: 0.5
+        type: 'custom:simple-thermostat'
+    icon: 'mdi:radiator'
+    panel: false
+    path: chauffage
+    title: Chauffage
   - badges: []
     cards:
-      - entity: weather.maison
-        name: Météo
-        theme: default
+      - entity: weather.saint_loubes
         type: weather-forecast
-    path: default_view
+    icon: 'mdi:weather-cloudy'
+    path: exterieur
     title: Extérieur
+  - badges: []
+    cards:
+      - type: 'custom:battery-state-card'
+        title: Sondes Température
+        color_gradient:
+          - '#ff0000'
+          - '#ffff00'
+          - '#00ff00'
+        entities:
+          - entity: sensor.0x00158d000411b5e5_battery
+            name: Chambre Diane
+          - entity: sensor.0x00158d0004210843_battery
+            name: Chambre Amis
+          - entity: sensor.0x00158d00045abd39_battery
+            name: Chambre Parentale
+          - entity: sensor.0x00158d000465c103_battery
+            name: Salon
+    icon: 'mdi:battery'
+    path: batteries
+    title: Batterie
+  - badges: []
+    cards:
+      - entities:
+          - entity: sensor.0x00158d000411b5e5_linkquality
+            name: Sonde chambre Diane
+          - entity: sensor.0x00158d0004210843_linkquality
+            name: Sonde chambre Amis
+          - entity: sensor.0x00158d00045abd39_linkquality
+            name: Sonde chambre Parentale
+          - entity: sensor.0x00158d000465c103_linkquality
+            name: Sonde Salon
+          - entity: sensor.0x00158d000444ed09_linkquality
+            name: Relais
+          - entity: sensor.0x00158d00045c20e3_linkquality
+            name: Relais
+          - entity: sensor.0x00124b001f3202ee_linkquality
+            name: Router
+          - entity: sensor.0x00158d0004852425_linkquality
+            name: Lumière Salon
+          - entity: sensor.0x00158d00048512e7_linkquality
+        show_header_toggle: false
+        title: 'Link Quality (max: 255)'
+        type: entities
+    icon: 'mdi:signal'
+    path: link-quality
+    title: Link Quality
+    visible:
+      - user: ac1f16ae5fa6492687b160a1ddf56a0b
+  - title: Light
+    path: light
+    icon: 'mdi:lightbulb'
+    badges: []
+    cards:
+      - type: light
+        entity: light.0x00158d0004852425_light
+        name: Lumière Salon
+      - type: light
+        entity: light.0x00158d00048512e7_light
+        name: Lumière Couloir
