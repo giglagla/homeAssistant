@@ -2,70 +2,48 @@ title: Maison
 views:
   - badges: []
     cards:
-      - type: 'custom:simple-thermostat'
-        entity: climate.climatediane
-        step_size: 0.5
-        name: Chambre Diane
-        step_layout: row
-        control:
-          _headings: false
-          hvac: true
-        hide:
-          state: true
-          temperature: true
-        sensors:
-          - entity: sensor.0x00158d000411b5e5_temperature
-            icon: 'mdi:home-thermometer-outline'
-          - entity: sensor.0x00158d000411b5e5_humidity
-            icon: 'mdi:water-percent'
-      - control:
-          _headings: false
-          hvac: true
-        hide:
-          state: true
-          temperature: true
-        entity: climate.climateparents
-        name: Chambre Parentale
-        sensors:
-          - entity: sensor.0x00158d00045abd39_temperature
-            icon: 'mdi:home-thermometer-outline'
-          - entity: sensor.0x00158d00045abd39_humidity
-            icon: 'mdi:water-percent'
-        step_layout: row
-        step_size: 0.5
-        type: 'custom:simple-thermostat'
-      - control:
-          _headings: false
-          hvac: true
-        hide:
-          state: true
-          temperature: true
-        entity: climate.climateamis
-        name: Chambre Amis
-        sensors:
-          - entity: sensor.0x00158d0004210843_temperature
-            icon: 'mdi:home-thermometer-outline'
-          - entity: sensor.0x00158d0004210843_humidity
-            icon: 'mdi:water-percent'
-        step_layout: row
-        step_size: 0.5
-        type: 'custom:simple-thermostat'
-      - control:
-          _headings: false
-          hvac: true
-        hide:
-          state: true
-          temperature: true
-        entity: climate.climatesalon
-        name: Salon
-        sensors:
+      - type: entities
+        entities:
           - entity: sensor.0x00158d000465c103_temperature
-            icon: 'mdi:home-thermometer-outline'
-          - entity: sensor.0x00158d000465c103_humidity
-            icon: 'mdi:water-percent'
-        step_layout: row
-        step_size: 0.5
-        type: 'custom:simple-thermostat'
+            type: 'custom:multiple-entity-row'
+            name: Salon
+            secondary_info:
+              attribute: battery
+              name: Battery
+              unit: '%'
+            state_header: Temperature
+            entities:
+              - entity: sensor.0x00158d000465c103_humidity
+          - entity: sensor.0x00158d00045abd39_temperature
+            type: 'custom:multiple-entity-row'
+            name: Chambre parents
+            secondary_info:
+              attribute: battery
+              name: Battery
+              unit: '%'
+            state_header: Temperature
+            entities:
+              - entity: sensor.0x00158d00045abd39_humidity
+          - entity: sensor.0x00158d000411b5e5_temperature
+            type: 'custom:multiple-entity-row'
+            name: Chambre Diane
+            secondary_info:
+              attribute: battery
+              name: Battery
+              unit: '%'
+            state_header: Temperature
+            entities:
+              - entity: sensor.0x00158d000411b5e5_humidity
+          - entity: sensor.0x00158d0004210843_temperature
+            type: 'custom:multiple-entity-row'
+            name: Chambre Amis
+            secondary_info:
+              attribute: battery
+              name: Battery
+              unit: '%'
+            state_header: Temperature
+            entities:
+              - entity: sensor.0x00158d0004210843_humidity
     icon: 'mdi:radiator'
     panel: false
     path: chauffage
@@ -80,7 +58,7 @@ views:
   - badges: []
     cards:
       - type: 'custom:battery-state-card'
-        title: Sondes Température
+        title: Batteries Capteurs
         color_gradient:
           - '#ff0000'
           - '#ffff00'
@@ -117,14 +95,16 @@ views:
           - entity: sensor.0x00158d0004852425_linkquality
             name: Lumière Salon
           - entity: sensor.0x00158d00048512e7_linkquality
+          - entity: sensor.0x60a423fffe0b92b0_linkquality
         show_header_toggle: false
         title: 'Link Quality (max: 255)'
         type: entities
+        state_color: true
       - type: 'custom:zigbee2mqtt-networkmap'
         entity: sensor.zigbee2mqtt_networkmap
         mqtt_base_topic: zigbee2mqtt
         force: 3000
-        node_size: 16
+        node_size: 10
         font_size: 12
         link_width: 2
         height: 400
